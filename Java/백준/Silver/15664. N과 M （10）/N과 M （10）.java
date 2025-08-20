@@ -27,8 +27,8 @@ public class Main {
 			if(num[i] != before)
 			{
 				result[depth] = num[i];
-				before = num[i];
-				comb(depth+1, i+1);
+				comb(depth+1, i+1); // 1
+				before = num[i]; // 2      1과 2의 순서는 동작 결과에 차이는 없음. 근데 보통 흐름상 재귀호출 뒤에 두는 편!
 			}
 		}
 	}
