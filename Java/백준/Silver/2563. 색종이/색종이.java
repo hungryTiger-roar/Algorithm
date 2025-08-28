@@ -1,45 +1,53 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
-	
-	
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		int N = sc.nextInt();
-		
-		// 흰색 도화지 배열 만들기
-		boolean[][] visited = new boolean[100][100];
-		
-		// 검은색 색종이 영역에 true값 넣기
-		for(int i=0; i<N; i++)
-		{
-			int X = sc.nextInt();
-			int Y = sc.nextInt();
-			
-			for(int x=0; x<10; x++)
-			{
-				for(int y=0; y<10; y++)
-				{
-					visited[X+x][Y+y] = true;
-				}
-			}
-		}
-		
-		
-		// 검은색 색종이 영역의 넓이 구하기
-		int cnt = 0;
-		
-		for(int i=0; i<visited.length; i++)
-		{
-			for(int j=0; j<visited[i].length; j++)
-			{
-				if(visited[i][j]==true)
-				{
-					cnt++;
-				}
-			}
-		}
-		System.out.println(cnt);
-	}
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st;
+
+        boolean[][] paper = new boolean[100][100];
+
+        int n = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < n; i++) {
+
+            st = new StringTokenizer(br.readLine());
+
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+
+            for (int j = y; j < y+10; j++) {
+
+                for (int k = x; k < x+10; k++) {
+
+                    paper[j][k] = true;
+                }
+            }
+
+        }
+
+        int cnt = 0;
+
+        for (int i = 0; i < 100; i++) {
+
+            for (int j = 0; j < 100; j++) {
+
+                if (paper[i][j]) {
+                    cnt++;
+                }
+            }
+        }
+
+        bw.write(String.valueOf(cnt));
+
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+
+
 }
