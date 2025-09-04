@@ -1,27 +1,35 @@
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int N = Integer.parseInt(sc.nextLine());
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		ArrayList<Integer> al = new ArrayList<Integer>();
+		int N = Integer.parseInt(st.nextToken());
+		
+		// N번 명령이면 최대 N개
+		int[] stack = new int[N];
+		int pointer = -1;
+		
+		// 배열로 만드는 방법
 		for(int i=0; i<N; i++)
 		{
-			String[] input = sc.nextLine().split(" ");
+			String[] input = br.readLine().split(" ");
 			
 			if(input[0].equals("push"))
 			{
-				al.add(Integer.parseInt(input[1]));
+				stack[++pointer] = Integer.parseInt(input[1]);
 			}
 			else if(input[0].equals("pop"))
 			{
-				if(al.size()>0)
+				if(pointer != -1)
 				{
-					System.out.println(al.get(al.size()-1));
-					al.remove(al.size()-1);
+					System.out.println(stack[pointer--]);
 				}
 				else
 				{
@@ -30,11 +38,12 @@ public class Main {
 			}
 			else if(input[0].equals("size"))
 			{
-				System.out.println(al.size());
+				// pointer가 가리키는 인덱스 + 0번째 인덱스가 크기
+				System.out.println(pointer+1);
 			}
 			else if(input[0].equals("empty"))
 			{
-				if(al.size()>0)
+				if(pointer != -1)
 				{
 					System.out.println(0);
 				}
@@ -45,9 +54,9 @@ public class Main {
 			}
 			else if(input[0].equals("top"))
 			{
-				if(al.size()>0)
+				if(pointer != -1)
 				{
-					System.out.println(al.get(al.size()-1));
+					System.out.println(stack[pointer]);
 				}
 				else
 				{
