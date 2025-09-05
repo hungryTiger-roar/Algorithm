@@ -66,18 +66,13 @@ public class Main {
 			
 			if (newX < 0 || newX >= R || newY < 0 || newY >= C) continue;
 			
-			if (arr[newX][newY] != arr[x][y]) {
-				
-				if (!set.contains(arr[newX][newY])) {
-					dfs(newX, newY, cnt+1);
-				}
-				
+			if (!set.contains(arr[newX][newY])) {
+				dfs(newX, newY, cnt+1);
 			}
 			
 		}
 		
 		set.remove(arr[x][y]);
-
 		
 	}
 
