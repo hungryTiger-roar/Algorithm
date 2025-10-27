@@ -24,10 +24,13 @@ public class Main
 		{
 			for(int j=-999; j<=999; j++)
 			{
-				if(a*i + b*j == c && d*i + e*j == f) sb.append(i).append(" ").append(j);
+				if(a*i + b*j == c && d*i + e*j == f)
+					{
+						sb.append(i).append(" ").append(j);
+						break;
+					}
 			}
 		}
-		
 		bw.write(sb.toString());
 		bw.flush();
 		bw.close();
